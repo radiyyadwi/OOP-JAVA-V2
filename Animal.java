@@ -135,7 +135,7 @@ public class Animal{
     
     }break;
     case 'k' : {
-      species_name = "Kungkang.h";
+      species_name = "Kungkang";
       weight = 10.0;
       food_type = "Omnivore";
       AddAnimalType("Land");
