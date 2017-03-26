@@ -33,8 +33,7 @@ public class Animal{
   public Animal(char animalcode) {
     enemy_list = new String[20];
     symbol = animalcode;
-    position.SetX(-1);
-    position.SetY(-1);
+    position = new Point(-1,-1);
     tamed = true;
     switch(animalcode)
     {

@@ -2,7 +2,7 @@ import java.util.Random;
 //File: Cage.java
 //Author: M.Ferdi Ghozali
 //NIM: 13515014
-public class Cage implements Renderable {
+public class Cage{
   protected final int id;
   protected String cage_type;
   protected int size_area;
@@ -13,13 +13,13 @@ public class Cage implements Renderable {
   public Cage() {
     id = 0;
   }
-  public Cage(int _id, Point[] area, int ukuran, String type) {
-    id = _id;
+  public Cage(int id, Point[] area, int ukuran, String type) {
+    this.id = id;
     cage_type = type;
     size_area = ukuran;
     this.area = new Point[size_area];
     for (int i = 0; i < size_area; i++) {
-      area[i] = new Point(area[i].GetX(),area[i].GetY());
+      this.area[i] = new Point(area[i].GetX(),area[i].GetY());
     }
     list_of_animal = new Animal[animal_size];
   }
