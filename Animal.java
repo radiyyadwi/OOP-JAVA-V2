@@ -1,3 +1,6 @@
+//Nama : Radiyya Dwisaputra
+//NIM : 13515023
+import java.util.concurrent.TimeUnit;
 public class Animal{
   private char symbol;
   private boolean tamed;
