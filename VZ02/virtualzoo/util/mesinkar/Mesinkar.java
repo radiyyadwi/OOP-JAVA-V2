@@ -1,8 +1,9 @@
+// Nama : M. Ferdi Ghozali
+// NIM : 13515014
+package virtualzoo.util.mesinkar;
 import java.util.*;
 import java.io.FileReader;
 import java.io.IOException;
-// Nama : M. Ferdi Ghozali
-// NIM : 13515014
 
 /* File: mesinkar.h */
 /* Definisi Mesin Karakter */
@@ -43,7 +44,7 @@ public class Mesinkar {
         Jika CToken = MARK maka EOP akan menyala (true) */
   public final void START() {
     try {
-        input_stream = new FileReader("VirtualZoo.txt");
+      input_stream = new FileReader("virtualzoo/map/VirtualZoo.txt");
     } 
     catch(IOException error) {
     } 

@@ -1,6 +1,8 @@
 //File: Zoo.java
 //Author: David Theosaksomo
 //NIM: 13515131
+package virtualzoo.zoo;
+import virtualzoo.cell.Cell;
 
 /** @class Zoo
   * Kelas zoo memiliki atribut  
