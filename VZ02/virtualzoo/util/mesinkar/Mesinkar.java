@@ -44,7 +44,7 @@ public class Mesinkar {
         Jika CToken = MARK maka EOP akan menyala (true) */
   public final void START() {
     try {
-      input_stream = new FileReader("virtualzoo/map/VirtualZoo.txt");
+      input_stream = new FileReader("VirtualZoo.txt");
     } 
     catch(IOException error) {
     } 
