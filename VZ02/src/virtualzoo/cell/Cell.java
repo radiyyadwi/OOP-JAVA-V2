@@ -2,7 +2,11 @@
 // Author : Prama Legawa Halqavi (13515132)
 package virtualzoo.cell;
 import java.util.Scanner;
-
+/**
+ * Class yang menunjukkan Cell
+ * @author Prama Legawa Halqavi/13515132
+ * @version 1.0, March 2017
+ */
 public class Cell {
   protected final String fachabtype;
   protected final String facilityname; // * @param nama fasilitas
@@ -15,10 +19,15 @@ public class Cell {
   protected String pilihan[]; // * @brief array of menu
   protected int jumlahpengunjung = 0; // * @brief jumlah pengunjung
   protected int n_pilihan = 0;
-
+  /** Constructor
+   *  @see java.lang.reflect.Constructor
+   */
   public Cell() {
     this("Road");
   }
+  /** Constructor dengan parameter
+   *  @param tipe menunjukan type cell
+   */
   public Cell(String type) {
     this.fachabtype = type;
     this.maxpengunjung = default_maxpengunjung;
@@ -35,16 +44,26 @@ public class Cell {
       }
     }
   }
+
   public void SetCellType(String tipe) {
     celltype = tipe;
   }
+   /** Menghasilkan type dari cell
+   * @return String type cell
+   */
   public String GetCellType() {
     return celltype;
   }
+  /** Menambahkan pilihan yang ada
+    * @param _pilihan pilihan yang ingin ditambahkan
+    */
   public void AddPilihan(String _pilihan) {
     pilihan[n_pilihan] = _pilihan;
     n_pilihan++;
   }
+  /** Menghasiklan type dari habitat
+   * @return String type habitat
+   */
   public String GetFacHabType() {
     return fachabtype;
   }
@@ -93,6 +112,8 @@ public class Cell {
       Render();
     }
   }
+  /** Menuliskan symbol yang mewakili hewan
+   */
   public void Render() {
     if (fachabtype == "Park") {
       System.out.print("P");

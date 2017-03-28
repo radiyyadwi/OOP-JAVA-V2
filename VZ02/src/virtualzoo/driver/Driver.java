@@ -12,9 +12,10 @@ import virtualzoo.util.point.Point;
 import virtualzoo.util.screencleaner.ScreenCleaner;
 import virtualzoo.zoo.Zoo;
 
-/** @class Zoo
-  * Kelas zoo memiliki atribut  matriks Cell dimana 1 cell merepresentasikan 
+/** Class zoo memiliki atribut  matriks Cell dimana 1 cell merepresentasikan 
   * sebuah petak 1x1m
+  * @author David Theosaksomo/13515131
+  * @version 1.0, March 2017
   */
 public class Driver {
 
@@ -31,7 +32,9 @@ public class Driver {
   private Point guest_pos;
   private int n_animal = 0;
   private boolean[] is_ada_cage;
-
+  /** Driver program Virtual Zoo
+   * 
+   */
   public Driver(){
     virtual_zoo = new Zoo(default_width,default_height);
     guest_pos = new Point(-1,-1);
@@ -236,15 +239,17 @@ public class Driver {
 
 
   }
-   /** @brief Menampilkan Zoo diatas layar dengan method render.
-     * @param upleft kordinat atas kiri
-     * @param downright kordinat bawah kanan
+   /** Menampilkan Zoo diatas layar dengan method render.
      */
   public void DisplayVirtualZoo(){
     Point up = new Point(0,0);
     Point down = new Point(width-1,height-1);
     DisplayVirtualZoo(up,down);
   }
+  /** Menampilkan Zoo diatas layar dengan method render.
+   * @param upleft kordinat atas kiri
+   * @param downright kordinat bawah kanan
+   */
   public void DisplayVirtualZoo(Point upleft, Point downright){
      //Inisialisasi variabel antara
     int[][] cage_matrix = new int[height][width];
@@ -328,6 +333,8 @@ public class Driver {
         System.out.println('|');
     }
   }
+  /** Menghitung jumlah makanan seluruh hewan
+   */
   public void HitungMakanan(){
     double daging = 0;
     double sayur = 0;
@@ -358,6 +365,8 @@ public class Driver {
     System.out.println(sayur + " kg sayur, dan");
     System.out.println(omni + " kg daging/sayur,");  
   }
+  /** Menggerakan hewan
+   */
   public void MoveAnimal(){
     for (int i = 0; i < max_cage; i++) {
       if (is_ada_cage[i]) {
@@ -365,6 +374,8 @@ public class Driver {
       }
     }
   }
+  /** Mencetak Judul Program Virtual Zoo
+   */
   public void PrintTitle(){
     System.out.println(" _____     _ _    _               ______        ");    
     System.out.println("|_   _|   | | |  (_)             |___  /            ");
@@ -376,7 +387,7 @@ public class Driver {
     System.out.println("                          |___/   ");
     System.out.println("========================================================");  
   }
-   /** @brief  secara acak memilih salah satu Entrance, kemudian membuat sebuah 
+   /** Secara acak memilih salah satu Entrance, kemudian membuat sebuah 
      * jalur tour yang menampilkan serangkaian
      * experience yang akan dialami pengunjung  berdasarkan interaksi dengan
      * hewan-hewan yang dilalui tour tersebut. 
@@ -623,6 +634,8 @@ public class Driver {
     }
     System.out.println("\nTour selesai.");
   }
+  /** Mencetak seluruh hewan dalam map
+   */
   public void PrintAllAnimal(){
     int count = 0;
     for (int i = 0; i < max_cage; i++) {

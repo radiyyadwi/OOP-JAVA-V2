@@ -1,6 +1,9 @@
 package virtualzoo.animal;
 import virtualzoo.util.point.Point;
-
+/** Class yang menjadi base class dari kelas turunan real animal
+ * @author Radiyya Dwisaputra/13515023
+ * @version 1.0, March 2017
+ */
 public class Animal{
   private char symbol;
   private boolean tamed;
@@ -14,22 +17,18 @@ public class Animal{
   private String[] enemy_list;
   private Point position;
   private int nenemy = 0;
-
-  /** @brief Constructor.
-    */
+  /**
+   * Constructor object Animal
+   * @see java.lang.reflect.Constructor
+   */
   public Animal() {
     Animal X = new Animal ('a');
   }
-
-  /** @brief Constructor.
+  /**Constructor
     * Mengisi atribut Animal sesuai parameter  
-    * @param symbol simbol animal pada zoo
-    * @param pos posisi animal
-    * @param weight berat animal
-    * @param food makanan yang dibutuhkan animal
-
+    * @param symbol_on_map simbol animal pada zoo
+    * @param is_tamed kondisi apakah animal liar atau jinak
     */
-
   public Animal(char animalcode) {
     enemy_list = new String[20];
     symbol = animalcode;
@@ -241,29 +240,44 @@ public class Animal{
     }
     food_per_day = weight/4;
   }
- 
-
+  /**
+   * Mengubah posisi animal  
+   * @param Point p posisi yang diinginkan
+   */
   public void SetPosition(Point P) {
     position.SetX(P.GetX());
     position.SetY(P.GetY());
 }
-
+  /** Mendapatkan type makanan hewan
+   * @return type makanan dari hewan
+   */
   public String GetFoodType() {
     return food_type;
   }
-
+  /** Menghasilkan deskripsi tentang animal
+    * 
+    * @return deskripsi hewan 
+    */
   public String GetDeskripsi() {
     return deskripsi;
   }
-
+  /** Menghasilkan nama kelas animal
+    * @return kelas animal
+    */
   public String GetClassName() {
     return class_name;
   }
-
+  /**
+   * Menghasilkan posisi animal
+   * @return Point posisi animal berada
+   */
   public Point GetPosition() {
     return(position);
   }
-
+  /**
+   * Memperoleh nama spesies dari animal
+   * @return String nama species dari hewan 
+   */
   public String GetSpeciesName() {
     return species_name;
   }
@@ -271,7 +285,10 @@ public class Animal{
   public double GetFoodNum() {
     return food_per_day;
   }
- 
+  /**
+   * Memperoleh jumlah makanan dari animal
+   * @return jumlah makanan dalam double
+   */
   public boolean IsEnemy(String animal) {
     int i=0;
     boolean found=false;
@@ -286,7 +303,9 @@ public class Animal{
     }
     return found;
   }
-
+  /** Mengembalikan apakah hewan jinak
+   * @return boolean true bila hewan jinak
+   */
   public boolean IsTamed() {
     return tamed;
   }
@@ -389,7 +408,9 @@ public class Animal{
     }break;
 }
 }
-
+  /** Menuliskan deskripsi hewan
+   * 
+   */
   public void Deskripsi() {
     System.out.print (GetSpeciesName());
     System.out.print (" termasuk dalam kelas ");
@@ -399,8 +420,8 @@ public class Animal{
   }
 
 
-  /** @brief  menambahkan type hewan dengan Land, Water atau Flying
-    * @param  type tipe hewan antara "Land", "Water" atau "Flying"
+   /** Menambahkan tipe hewan 
+   * @param  type tipe hewan antara "Land", "Water" atau "Flying"
   */
   public void AddAnimalType(String type) {
     if(animal_type[0]!="Flying" && animal_type[0]!="Land" && animal_type[0]!="Water")
@@ -416,7 +437,10 @@ public class Animal{
      animal_type[2]=type;
     }
   }
-
+  /** Menambahkan animal enemy ke dalam enemy list 
+   * @param animal_name nama hewan yang 
+   * akan ditambahkan sebagai enemy
+   */
   public void AddEnemy(String animalname) {
     if(nenemy < 19)
     {
@@ -424,7 +448,10 @@ public class Animal{
       nenemy++;
     }
   }
-
+  /** Mengecek type yang dimiliki hewan 
+   * @param type type yang akan dicek
+   * @return boolean yes bila type itu ada 
+   */
   public boolean IsTypeThere(String S) {
     boolean found = false;
     boolean ubah = false;
@@ -442,7 +469,8 @@ public class Animal{
     } 
     return(found);
   }
-
+   /** Menuliskan symbol yang mewakili hewan
+   */
   public void Render()
   {
     System.out.print(symbol);

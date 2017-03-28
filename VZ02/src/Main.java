@@ -1,7 +1,11 @@
 import java.util.Scanner;
 import virtualzoo.driver.Driver;
 import virtualzoo.util.point.Point;
-
+/** Class untuk menjadi menu program dan menjalankan
+ * keseluruhan program
+ * @author David Theosaksomo/13515131
+ * @version 1.0 , March 2017
+ */
 public class Main {
   public static void main(String[] args) {
     Driver driver = new Driver();
@@ -73,5 +77,6 @@ public class Main {
         }
       }
     } while (input != 5);
+    scanner.close();
   }
 }
