@@ -1,9 +1,11 @@
 //File: Driver.java
 //Author: David Theosaksomo
 //NIM: 13515131
+
 package virtualzoo.driver;
-import java.util.Scanner; 
+
 import java.util.Random;
+import java.util.Scanner;
 import virtualzoo.animal.Animal;
 import virtualzoo.cage.Cage;
 import virtualzoo.cell.Cell;
@@ -12,7 +14,7 @@ import virtualzoo.util.point.Point;
 import virtualzoo.util.screencleaner.ScreenCleaner;
 import virtualzoo.zoo.Zoo;
 
-/** Class zoo memiliki atribut  matriks Cell dimana 1 cell merepresentasikan 
+/** Class zoo memiliki atribut  matriks Cell dimana 1 cell merepresentasikan .
   * sebuah petak 1x1m
   * @author David Theosaksomo/13515131
   * @version 1.0, March 2017
@@ -21,340 +23,291 @@ public class Driver {
 
   private int height;
   private int width;
-  private Zoo virtual_zoo;
-  private Cage[] cage_list;
-  private Animal[] animal_list;
-  private final int max_cage = 20;
-  private final int max_animal = 100;
-  private final int max_area_in_cage = 50;
-  private final int default_height = 100;
-  private final int default_width = 100;
-  private Point guest_pos;
-  private int n_animal = 0;
-  private boolean[] is_ada_cage;
-  /** Driver program Virtual Zoo
+  private Zoo virtualZoo;
+  private Cage[] cageList;
+  private Animal[] animalList;
+  private final int maxCage = 20;
+  private final int maxAnimal = 100;
+  private final int maxAreaInCage = 50;
+  private final int defaultHeight = 100;
+  private final int defaultWidth = 100;
+  private Point guestPos;
+  private int nanimal = 0;
+  private boolean[] isAdaCage;
+  /** Driver program Virtual Zoo.
    * 
    */
-  public Driver(){
-    virtual_zoo = new Zoo(default_width,default_height);
-    guest_pos = new Point(-1,-1);
+
+  public Driver() {
+    virtualZoo = new Zoo(defaultWidth,defaultHeight);
+    guestPos = new Point(-1,-1);
     Mesinkar msk = new Mesinkar();
-      //Baca File dan Inisialisasi Zoo;
-    msk.START();
-
-    width = msk.GetCI();
-    msk.ADV();
-    msk.ADV();
-    height = msk.GetCI();
-    msk.ADV();
-
-    cage_list = new Cage [max_cage];
-    animal_list = new Animal [max_animal];
-
+    //Baca File dan Inisialisasi Zoo;
+    msk.start();
+    width = msk.getCi();
+    msk.adv();
+    msk.adv();
+    height = msk.getCi();
+    msk.adv();
+    cageList = new Cage [maxCage];
+    animalList = new Animal [maxAnimal];
     //Ciptakan variabel temporary
-    int[] ukuran_cage = new int [max_cage];
-    for (int i = 0; i < max_cage; i++) {
-      ukuran_cage[i] = 0;
+    int[] ukuranCage = new int [maxCage];
+    for (int i = 0; i < maxCage; i++) {
+      ukuranCage[i] = 0;
     }
-    is_ada_cage = new boolean [max_cage];
-    for (int i = 0; i < max_cage; i++) {
-      is_ada_cage[i] = false;
+    isAdaCage = new boolean [maxCage];
+    for (int i = 0; i < maxCage; i++) {
+      isAdaCage[i] = false;
     }
-    Point[][] area_list = new Point[max_cage][max_area_in_cage];
-    for (int i = 0; i < max_cage; i++) {
-      for (int j = 0; j < max_area_in_cage; j++) {
-        area_list[i][j] = new Point();
+    Point[][] areaList = new Point[maxCage][maxAreaInCage];
+    for (int i = 0; i < maxCage; i++) {
+      for (int j = 0; j < maxAreaInCage; j++) {
+        areaList[i][j] = new Point();
       }  
     }
-    String[] cage_type = new String [max_cage];
-    for (int i = 0; i < max_cage; i++) {
-      cage_type[i] = new String(".");
+    String[] cageType = new String [maxCage];
+    for (int i = 0; i < maxCage; i++) {
+      cageType[i] = new String(".");
     }
-    int[][] animal_index = new int [height+1][width+1];
+    int[][] animalIndex = new int [height + 1][width + 1];
     for (int i = 0; i < height; i++) {
       for (int j = 0; j < width; j++) {
-        animal_index[i][j] = -1;
+        animalIndex[i][j] = -1;
       }
     }
 
     for (int i = 0; i < height; i++) {
       for (int j = 0; j < width; j++) {
-        switch(msk.GetCC())
-				{
-					case 'A' :
-						{
-						Cell A = new Cell("Air");
-						virtual_zoo.SetZooElmt(i,j,A);
-						}
-					break;
-					case 'L' :
-					{
-						Cell B = new Cell("Land");
-						
-						virtual_zoo.SetZooElmt(i,j,B);
-					}
-					break;
-					case 'W' :
-					{
-						Cell C = new Cell("Water");
-						virtual_zoo.SetZooElmt(i,j,C);
-					}
-					break;
-					case 'P' :
-					{
-						Cell D = new Cell("Park");
-						D.AddPilihan("RollerCosty");
-						D.AddPilihan("PutingBeliung");
-						D.AddPilihan("RumahZombie");
+        switch (msk.getCc()) {
+          case 'A' : {
+            Cell a = new Cell("Air");
+            virtualZoo.setZooElmt(i,j,a);
+          }
+          break;
+          case 'L' : {
+            Cell b = new Cell("Land");
+            virtualZoo.setZooElmt(i,j,b);
+          }
+          break;
+          case 'W' : {
+            Cell c = new Cell("Water");
+            virtualZoo.setZooElmt(i,j,c);
+          }
+          break;
+          case 'P' : {
+            Cell d = new Cell("Park");
+            d.addPilihan("RollerCosty");
+            d.addPilihan("PutingBeliung");
+            d.addPilihan("RumahZombie");
 
-						virtual_zoo.SetZooElmt(i,j,D);
-					}
-					break;
-					case 'R' :
-					{
-						Cell E = new Cell("Restaurant");
+            virtualZoo.setZooElmt(i,j,d);
+          }
+          break;
+          case 'R' : {
+            Cell e = new Cell("Restaurant");
+            e.addPilihan("Nasi Bakar dengan sayur bayam");
+            e.addPilihan("Steak Daging Asap dengan wortel ");
+            e.addPilihan("Es Krim Pakai Brokoli");
+            virtualZoo.setZooElmt(i,j,e);
+          }
+          break;
+          case '_' : {
+            Cell f = new Cell("Road");
+            virtualZoo.setZooElmt(i,j,f);
+          }
+          break;
+          case 'E' : {
+            Cell g = new Cell("Entrance");
+            virtualZoo.setZooElmt(i,j,g);
+          }
+          break;
+          case 'X' : {
+            Cell h = new Cell("Exit");
+            virtualZoo.setZooElmt(i,j,h);
+          }
+          break;
+          default : {
+          }
+        }
 
-						E.AddPilihan("Nasi Bakar dengan sayur bayam");
-						E.AddPilihan("Steak Daging Asap dengan wortel ");
-						E.AddPilihan("Es Krim Pakai Brokoli");
-
-						virtual_zoo.SetZooElmt(i,j,E);
-					}
-					break;
-					case '_' :
-					{
-						Cell F = new Cell("Road");
-
-						virtual_zoo.SetZooElmt(i,j,F);
-					}
-					break;
-					case 'E' :
-					{
-						Cell G = new Cell("Entrance");
-
-						virtual_zoo.SetZooElmt(i,j,G);
-					}
-					break;
-					case 'X' :
-					{
-						Cell H = new Cell("Exit");
-						
-						virtual_zoo.SetZooElmt(i,j,H);
-					}
-					break;
-				}
-
-				//Jika Cell merupakan Habitat
-				if(msk.GetCC() == 'A' || msk.GetCC() == 'L' || msk.GetCC() == 'W')
-				{
-
-					//Tambahkan Cage
-					char tm = msk.GetCC();
-					msk.ADV();
-
-					int num = msk.GetCI();
-					//Jika ada cage
-					if(num >0)
-					{	
-						num--;
-						//Jika Cage untuk id tersebut belum dibuat
-						if(!is_ada_cage[num])
-						{
-							is_ada_cage[num] = true;
-							switch(tm)
-							{
-								case 'A' :
-								{
-									cage_type[num] = "Air";
-								}
-								break;
-								case 'L' :
-								{
-									cage_type[num] = "Land";
-									
-								}
-								break;
-								case 'W' :
-								{
-									cage_type[num] = "Water";
-									
-								}
-								break;
-								
-							}
-						}
-						if((tm == 'A' && cage_type[num] == "Air") || (tm == 'L' && 
-                cage_type[num] == "Land") || (tm == 'W' && 
-                cage_type[num] == "Water"))
-						{
-							area_list[num][ukuran_cage[num]].SetX(j);
-							area_list[num][ukuran_cage[num]].SetY(i);
-							ukuran_cage[num] ++;
-
-							//Pembacaan Animal
-							msk.ADV();
-							
-							if(msk.GetCC() != '-')	
-							{
-								
-								animal_list[n_animal] = new Animal(msk.GetCC());
-								animal_index[i][j] = n_animal;
-								n_animal++;
-							}
-
-							
-
-						}
-						else
-							{
-								msk.ADV();
-							}
-							
-					}
-				}
-        msk.ADV();
+        //Jika Cell merupakan Habitat
+        if (msk.getCc() == 'A' || msk.getCc() == 'L' || msk.getCc() == 'W') {
+          //Tambahkan Cage
+          char tm = msk.getCc();
+          msk.adv();
+          int num = msk.getCi();
+          //Jika ada cage
+          if (num > 0) {  
+            num--;
+            //Jika Cage untuk id tersebut belum dibuat
+            if (!isAdaCage[num]) {
+              isAdaCage[num] = true;
+              switch (tm) {
+                case 'A' : {
+                  cageType[num] = "Air";
+                }
+                break;
+                case 'L' : {
+                  cageType[num] = "Land";
+                }
+                break;
+                case 'W' : {
+                  cageType[num] = "Water";
+                }
+                break;
+                default : {                
+                }
+              }
+            }
+            if ((tm == 'A' && cageType[num] == "Air") || (tm == 'L' 
+                && cageType[num] == "Land") || (tm == 'W' 
+                && cageType[num] == "Water")) {
+              areaList[num][ukuranCage[num]].setX(j);
+              areaList[num][ukuranCage[num]].setY(i);
+              ukuranCage[num] ++;
+              //Pembacaan Animal
+              msk.adv();
+              if (msk.getCc() != '-') {
+                animalList[nanimal] = new Animal(msk.getCc());
+                animalIndex[i][j] = nanimal;
+                nanimal++;
+              }
+            } else {
+              msk.adv();
+            }
+          }
+        }
+        msk.adv();
       }  
     }
-        //Alokasi cage sesuai data file eksternal
-    for (int i = 0; i < max_cage; i++) {
-      if (is_ada_cage[i]) {
-        cage_list[i] = new Cage(i+1, area_list[i], ukuran_cage[i], cage_type[i]);
+    //Alokasi cage sesuai data file eksternal
+    for (int i = 0; i < maxCage; i++) {
+      if (isAdaCage[i]) {
+        cageList[i] = new Cage(i + 1, areaList[i], ukuranCage[i], cageType[i]);
       }
     }
-
     //Isicage dengan animal sesuai pembacaan file eksternal
-    for (int i = 0; i < max_cage; i++) {
-      if (is_ada_cage[i]) {
-        for (int j = 0; j < cage_list[i].GetCageSize(); j++) {
-          int m = cage_list[i].GetAreaElmt(j).GetX();
-          int n = cage_list[i].GetAreaElmt(j).GetY();
+    for (int i = 0; i < maxCage; i++) {
+      if (isAdaCage[i]) {
+        for (int j = 0; j < cageList[i].getCageSize(); j++) {
+          int m = cageList[i].getAreaElmt(j).getX();
+          int n = cageList[i].getAreaElmt(j).getY();
           //Ada animal di posisi itu
-          if (animal_index[n][m] >= 0 && animal_index[n][m] < n_animal) {
+          if (animalIndex[n][m] >= 0 && animalIndex[n][m] < nanimal) {
             //Masukkan hewan kedalam cage
-            cage_list[i].InputAnimal(animal_list[animal_index[n][m]],j);
+            cageList[i].inputAnimal(animalList[animalIndex[n][m]],j);
           }
         }
       }
     }
-
-
   }
-   /** Menampilkan Zoo diatas layar dengan method render.
-     */
-  public void DisplayVirtualZoo(){
+  /** Menampilkan Zoo diatas layar dengan method render..
+    */
+
+  public void displayVirtualZoo() {
     Point up = new Point(0,0);
-    Point down = new Point(width-1,height-1);
-    DisplayVirtualZoo(up,down);
+    Point down = new Point(width - 1,height - 1);
+    displayVirtualZoo(up,down);
   }
-  /** Menampilkan Zoo diatas layar dengan method render.
+  /** Menampilkan Zoo diatas layar dengan method render..
    * @param upleft kordinat atas kiri
    * @param downright kordinat bawah kanan
    */
-  public void DisplayVirtualZoo(Point upleft, Point downright){
-     //Inisialisasi variabel antara
-    int[][] cage_matrix = new int[height][width];
+
+  public void displayVirtualZoo(Point upleft, Point downright) {
+    //Inisialisasi variabel antara
+    int[][] cageMatrix = new int[height][width];
     for (int i = 0; i < height; i++) {
       for (int j = 0; j < width; j++) {
-        cage_matrix[i][j] = -1;
+        cageMatrix[i][j] = -1;
       }
     }
-    Point [][] animal_matrix = new Point[height][width];
+    Point [][] animalMatrix = new Point[height][width];
     for (int i = 0;i < height; i++) {
-      for (int j = 0;j<width;j++) {
-        animal_matrix[i][j] = new Point(-1,-1);
+      for (int j = 0;j < width;j++) {
+        animalMatrix[i][j] = new Point(-1,-1);
       }
     }
     //Variabel char cage dan animal
-    for (int i = 0; i < max_cage; i++) {
-      if (is_ada_cage[i]) {
-        for (int j = 0; j < cage_list[i].GetCageSize(); j++) {
-          int m = cage_list[i].GetAreaElmt(j).GetX();
-          int n = cage_list[i].GetAreaElmt(j).GetY();
-          cage_matrix[n][m] = i;
+    for (int i = 0; i < maxCage; i++) {
+      if (isAdaCage[i]) {
+        for (int j = 0; j < cageList[i].getCageSize(); j++) {
+          int m = cageList[i].getAreaElmt(j).getX();
+          int n = cageList[i].getAreaElmt(j).getY();
+          cageMatrix[n][m] = i;
         }
-        for (int j = 0; j < cage_list[i].NumberOfAnimal(); j++) {
-          int m = cage_list[i].GetAnimal(j).GetPosition().GetX();
-          int n = cage_list[i].GetAnimal(j).GetPosition().GetY();
-          animal_matrix[n][m].SetX(i);
-          animal_matrix[n][m].SetY(j);
+        for (int j = 0; j < cageList[i].numberOfAnimal(); j++) {
+          int m = cageList[i].getAnimal(j).getPosition().getX();
+          int n = cageList[i].getAnimal(j).getPosition().getY();
+          animalMatrix[n][m].setX(i);
+          animalMatrix[n][m].setY(j);
         }
       }
     }
     //Create Garis Horizontal
-    for (int k = upleft.GetX() * 4; k < (downright.GetX()+1) * 4; k++) {
+    for (int k = upleft.getX() * 4; k < (downright.getX() + 1) * 4; k++) {
       System.out.print("_");
     }
     System.out.println('_');
 
-    for (int i = upleft.GetY(); i < downright.GetY()+1; i++) {
-      for (int k = upleft.GetX() * 4; k < (downright.GetX()+1) * 4; k++) {
+    for (int i = upleft.getY(); i < downright.getY() + 1; i++) {
+      for (int k = upleft.getX() * 4; k < (downright.getX() + 1) * 4; k++) {
         if (k % 4 == 0) {
           System.out.print("|");
-        }
-        else
-        if (k % 4 == 1) {
-            System.out.print(" ");
-        }
-        else
-        if (k % 4 == 2) {
+        } else if (k % 4 == 1) {
+          System.out.print(" ");
+        } else if (k % 4 == 2) {
           // Jika ada kandang
-          if (cage_matrix[i][k/4] >= 0) {
-            
-            virtual_zoo.GetZooElmt(i,k/4).Render(true);
+          if (cageMatrix[i][k / 4] >= 0) {
+            virtualZoo.getZooElmt(i,k / 4).render(true);
+          } else {
+            virtualZoo.getZooElmt(i,k  / 4).render();
           }
-          else {
-            virtual_zoo.GetZooElmt(i,k /4).Render();
-          }
-        }
-        else {
-        System.out.print(" ");
+        } else {
+          System.out.print(" ");
         }
       }
-        System.out.println('|');
-
-      for (int k = upleft.GetX() * 4; k < (downright.GetX()+1) * 4; k++) {
+      System.out.println('|');
+      for (int k = upleft.getX() * 4; k < (downright.getX() + 1) * 4; k++) {
         if (k % 4 == 0) {
           System.out.print('|');
-        }
-        else
-        if (k % 4 == 2) {  
-          if (i == guest_pos.GetY() && k/4 == guest_pos.GetX()) {
+        } else if (k % 4 == 2) {  
+          if (i == guestPos.getY() && k / 4 == guestPos.getX()) {
             System.out.print("&");
-          }
-          else
-          if (animal_matrix[i][k/4].GetX() >= 0)
-            cage_list[animal_matrix[i][k/4].GetX()].GetAnimal(animal_matrix[i][k/4].GetY()).Render();
-          else {
+          } else if (animalMatrix[i][k / 4].getX() >= 0) {
+            cageList[animalMatrix[i][k / 4].getX()]
+            .getAnimal(animalMatrix[i][k / 4].getY()).render();
+          } else {
             System.out.print("_");
-          } } else {
-        System.out.print("_");
+          } 
+        } else {
+          System.out.print("_");
         }
       }
-        System.out.println('|');
+      System.out.println('|');
     }
   }
-  /** Menghitung jumlah makanan seluruh hewan
+  /** Menghitung jumlah makanan seluruh hewan.
    */
-  public void HitungMakanan(){
+
+  public void hitungMakanan() {
     double daging = 0;
     double sayur = 0;
     double omni = 0;
     //hitung makanan masing-masing
-    for (int i = 0; i < max_cage; i++) {
-      if (is_ada_cage[i]) {
-        for (int j = 0; j < cage_list[i].NumberOfAnimal(); j++) {
-          String type = cage_list[i].GetAnimal(j).GetFoodType();
-          double foodnum = cage_list[i].GetAnimal(j).GetFoodNum();
+    for (int i = 0; i < maxCage; i++) {
+      if (isAdaCage[i]) {
+        for (int j = 0; j < cageList[i].numberOfAnimal(); j++) {
+          String type = cageList[i].getAnimal(j).getFoodType();
+          double foodnum = cageList[i].getAnimal(j).getFoodNum();
           if (type == "Omnivore") {
             omni += foodnum;
-          }
-          else if (type == "Carnivore"){
+          } else if (type == "Carnivore") {
             daging += foodnum;
-          }
-          else if (type == "Herbivore") {
+          } else if (type == "Herbivore") {
             sayur += foodnum;
-          }
-          else {
+          } else {
             System.out.println("Tipe tidak dikenali");
           } 
         }
@@ -365,18 +318,20 @@ public class Driver {
     System.out.println(sayur + " kg sayur, dan");
     System.out.println(omni + " kg daging/sayur,");  
   }
-  /** Menggerakan hewan
+  /** Menggerakan hewan.
    */
-  public void MoveAnimal(){
-    for (int i = 0; i < max_cage; i++) {
-      if (is_ada_cage[i]) {
-        cage_list[i].MoveAnimal();
+
+  public void moveAnimal() {
+    for (int i = 0; i < maxCage; i++) {
+      if (isAdaCage[i]) {
+        cageList[i].moveAnimal();
       }
     }
   }
-  /** Mencetak Judul Program Virtual Zoo
+  /** Mencetak Judul Program Virtual Zoo.
    */
-  public void PrintTitle(){
+
+  public void printTitle() {
     System.out.println(" _____     _ _    _               ______        ");    
     System.out.println("|_   _|   | | |  (_)             |___  /            ");
     System.out.println("  | | __ _| | | ___ _ __   __ _     / /  ___   ___  ");
@@ -387,207 +342,193 @@ public class Driver {
     System.out.println("                          |___/   ");
     System.out.println("========================================================");  
   }
-   /** Secara acak memilih salah satu Entrance, kemudian membuat sebuah 
-     * jalur tour yang menampilkan serangkaian
-     * experience yang akan dialami pengunjung  berdasarkan interaksi dengan
-     * hewan-hewan yang dilalui tour tersebut. 
-     */
-  public void TourVirtualZoo(){
-    Point[] entrance_list = new Point[10];
+  /** Secara acak memilih salah satu Entrance, kemudian membuat sebuah .
+    * jalur tour yang menampilkan serangkaian
+    * experience yang akan dialami pengunjung  berdasarkan interaksi dengan
+    * hewan-hewan yang dilalui tour tersebut. 
+    */
 
-    int n_entrance = 0;
+  public void tourVirtualZoo() {
+    Point[] entranceList = new Point[10];
+    int nentrance = 0;
     //Mendata Entrance yang ada
     for (int i = 0;i < height; i++) {
       for (int j = 0;j < width; j++) {
-        if (virtual_zoo.GetZooElmt(i,j).GetCellType() == "Facility") {
-          if (virtual_zoo.GetZooElmt(i,j).GetFacHabType() == "Entrance") {
-          entrance_list[n_entrance] = new Point(j,i);
-          n_entrance++;
+        if (virtualZoo.getZooElmt(i,j).getCellType() == "Facility") {
+          if (virtualZoo.getZooElmt(i,j).getFacHabType() == "Entrance") {
+            entranceList[nentrance] = new Point(j,i);
+            nentrance++;
           }
         }
       }
     }
     //Inisialisasi variabel closed
-    boolean[][] is_closed = new boolean [height][width];
+    boolean[][] isClosed = new boolean [height][width];
     for (int i = 0;i < height; i++) {
-      is_closed[i] = new boolean[width];
+      isClosed[i] = new boolean[width];
     }
     for (int i = 0; i < height; i++) {
       for (int j = 0; j < width; j++) {
-        is_closed[i][j] = false;
+        isClosed[i][j] = false;
       }
     }
     //Secara random memilih entrance
     Random rand = new Random();
-    int n = rand.nextInt(n_entrance);
-    guest_pos.SetX(entrance_list[n].GetX());
-    guest_pos.SetY(entrance_list[n].GetY());
-    is_closed[guest_pos.GetY()][guest_pos.GetX()] = true;
-    ScreenCleaner screen_cleaner = new ScreenCleaner();
-    screen_cleaner.ClearScreen();
-    DisplayVirtualZoo();
+    int n = rand.nextInt(nentrance);
+    guestPos.setX(entranceList[n].getX());
+    guestPos.setY(entranceList[n].getY());
+    isClosed[guestPos.getY()][guestPos.getX()] = true;
+    ScreenCleaner screenCleaner = new ScreenCleaner();
+    screenCleaner.clearScreen();
+    displayVirtualZoo();
     System.out.println("Tour akan dimulai. tekan enter untuk melanjutkan");
     Scanner scanner = new Scanner(System.in);
     scanner.nextLine();
-    
-
     boolean noway = false;
-    boolean is_exit = false;
+    boolean isExit = false;
     //Loop hingga mencapai exit atau tidak ada road lagi
-    while (!noway && !is_exit)
-    {
+    while (!noway && !isExit) {
       //pilih arah secara random
-      Point dest = new Point(guest_pos.GetX(),guest_pos.GetY());
-      int dir = rand.nextInt(4) +1;
+      Point dest = new Point(guestPos.getX(),guestPos.getY());
+      int dir = rand.nextInt(4) + 1;
       int t = 0;
-      boolean isroad =false;
+      boolean isroad = false;
       //cari arah yang valid
-      while ((((dest.GetY() <0 || dest.GetX() <0 || dest.GetY()>=height || 
-                dest.GetX()>= width) ? true : 
-                is_closed[dest.GetY()][dest.GetX()]) || !isroad)&& t <=4)
-      {
+      while ((((dest.getY() < 0 || dest.getX() < 0 || dest.getY() >= height 
+              || dest.getX() >= width) ? true : 
+                isClosed[dest.getY()][dest.getX()]) || !isroad) && t <= 4) {
         if (dir == 4) {
-          dest.SetY(guest_pos.GetY()+1);
-          dest.SetX(guest_pos.GetX());
-        } else 
-        if (dir == 1) {
-          dest.SetY(guest_pos.GetY()-1);
-          dest.SetX(guest_pos.GetX());
-
-        } else 
-        if (dir==2) {
-          dest.SetY(guest_pos.GetY());
-          dest.SetX(guest_pos.GetX()-1);
-        } else 
-        if (dir==3) {
-        dest.SetY(guest_pos.GetY());
-          dest.SetX(guest_pos.GetX()+1);
+          dest.setY(guestPos.getY() + 1);
+          dest.setX(guestPos.getX());
+        } else if (dir == 1) {
+          dest.setY(guestPos.getY() - 1);
+          dest.setX(guestPos.getX());
+        } else if (dir == 2) {
+          dest.setY(guestPos.getY());
+          dest.setX(guestPos.getX() - 1);
+        } else if (dir == 3) {
+          dest.setY(guestPos.getY());
+          dest.setX(guestPos.getX() + 1);
         }
         t++;
         dir = dir % 4 + 1;
         isroad = false;
-        if ((dest.GetY() <0 || dest.GetX() <0 || dest.GetY()>=height || 
-           dest.GetX() >= width) ? false : true)
-        if (virtual_zoo.GetZooElmt(dest.GetY(),dest.GetX()).GetCellType() 
-          == "Facility") {
-          if (virtual_zoo.GetZooElmt(dest.GetY(),dest.GetX()).GetFacHabType() 
-              == "Road" || 
-              virtual_zoo.GetZooElmt(dest.GetY(),dest.GetX()).GetFacHabType() 
-              == "Exit" ) {
-            isroad = true;
+        if ((dest.getY() < 0 || dest.getX() < 0 || dest.getY() >= height 
+            || dest.getX() >= width) ? false : true) {
+          if (virtualZoo.getZooElmt(dest.getY(),dest.getX()).getCellType() 
+              == "Facility") {
+            if (virtualZoo.getZooElmt(dest.getY(),dest.getX()).getFacHabType() 
+                  == "Road" 
+                  || virtualZoo.getZooElmt(dest.getY(),dest.getX()).getFacHabType() 
+                  == "Exit") {
+              isroad = true;
+            }
           }
         }
       }
       if (t > 4) {
         noway = true;
-      }
-      else {
-          if (virtual_zoo.GetZooElmt(guest_pos.GetY(),guest_pos.GetX()).GetCellType() 
-              == "Facility") {
-            if (virtual_zoo.GetZooElmt(guest_pos.GetY(),guest_pos.GetX()).GetFacHabType() 
-                == "Exit") {
-              is_exit = true;
-            }
+      } else {
+        if (virtualZoo.getZooElmt(guestPos.getY(),guestPos.getX())
+            .getCellType() == "Facility") {
+          if (virtualZoo.getZooElmt(guestPos.getY(),guestPos.getX())
+              .getFacHabType() == "Exit") {
+            isExit = true;
           }
+        }
       }
-      if (!noway && !is_exit) {
-        guest_pos.SetX(dest.GetX());
-        guest_pos.SetY(dest.GetY());
-        is_closed[guest_pos.GetY()][guest_pos.GetX()] = true;
-        screen_cleaner.ClearScreen();
-        MoveAnimal();
-        DisplayVirtualZoo();
+      if (!noway && !isExit) {
+        guestPos.setX(dest.getX());
+        guestPos.setY(dest.getY());
+        isClosed[guestPos.getY()][guestPos.getX()] = true;
+        screenCleaner.clearScreen();
+        moveAnimal();
+        displayVirtualZoo();
         //Variabel pointer ke animal yang ada di cage yang bersisian di sebelah
-        Animal[] nearby_animal = new Animal [max_animal];
-        int near_animal =0;
+        Animal[] nearbyAnimal = new Animal [maxAnimal];
+        int nearAnimal = 0;
         //Variabel menyimpan data facility yang bersebelahan dengan posisi player
-        Cell[] nearby_facility = new Cell[4];
-        int nearfac = 0;
+        Cell[] nearbyFacility = new Cell[4];
+        int nearFac = 0;
         //Coba untuk setiap arah
         for (dir = 1; dir <= 4; dir++) {
           if (dir == 4) {
-          dest.SetY(guest_pos.GetY()+1);
-          dest.SetX(guest_pos.GetX());
-          } else 
-          if (dir == 1) {
-            dest.SetY(guest_pos.GetY()-1);
-            dest.SetX(guest_pos.GetX());
-          } else 
-          if (dir == 2) {
-            dest.SetY(guest_pos.GetY());
-            dest.SetX(guest_pos.GetX()-1);
-          } else 
-          if (dir == 3) {
-            dest.SetY(guest_pos.GetY());
-            dest.SetX(guest_pos.GetX()+1);
+            dest.setY(guestPos.getY() + 1);
+            dest.setX(guestPos.getX());
+          } else if (dir == 1) {
+            dest.setY(guestPos.getY() - 1);
+            dest.setX(guestPos.getX());
+          } else if (dir == 2) {
+            dest.setY(guestPos.getY());
+            dest.setX(guestPos.getX() - 1);
+          } else if (dir == 3) {
+            dest.setY(guestPos.getY());
+            dest.setX(guestPos.getX() + 1);
           }
-          if (dest.GetY() < 0 || dest.GetX() < 0 || dest.GetY() >= height || 
-              dest.GetX() >= width) {
+          if (dest.getY() < 0 || dest.getX() < 0 || dest.getY() >= height 
+              || dest.getX() >= width) {
             //donothinng
-          }
-          else
-          if (virtual_zoo.GetZooElmt(dest.GetY(),dest.GetX()).GetCellType() 
-              == "Facility") {  
-            String type = virtual_zoo.GetZooElmt(dest.GetY(),dest.GetX()).GetFacHabType();
+          } else if (virtualZoo.getZooElmt(dest.getY(),dest.getX())
+              .getCellType() == "Facility") {  
+            String type = virtualZoo.getZooElmt(dest.getY(),dest.getX()).getFacHabType();
             if (type != "Road" && type != "Entrance" && type != "Exit") {
               //Cari apakah facility dengan jenis tersebut sudah ada
               int k = 0;
               boolean exist = false;
-              while (k < nearfac && !exist) {
-                if (nearby_facility[k].GetFacHabType() == 
-                  virtual_zoo.GetZooElmt(dest.GetY(),dest.GetX()).GetFacHabType()) {
+              while (k < nearFac && !exist) {
+                if (nearbyFacility[k].getFacHabType() 
+                    == virtualZoo.getZooElmt(dest.getY(),dest.getX())
+                    .getFacHabType()) {
                   exist = true;
                 }
                 k++;
               }
               if (!exist) {
-                nearby_facility[nearfac] = virtual_zoo.GetZooElmt(dest.GetY(),dest.GetX());
-                nearfac++;  
+                nearbyFacility[nearFac] = virtualZoo.getZooElmt(dest.getY(),dest.getX());
+                nearFac++;  
               }
             }
-          }
-          else
-          if (virtual_zoo.GetZooElmt(dest.GetY(),dest.GetX()).GetCellType() == "Habitat")
-          {
+          } else if (virtualZoo.getZooElmt(dest.getY(),dest.getX())
+                    .getCellType() == "Habitat") {
             //Cari apakah ada kandang di habitat  itu
             boolean found = false;
             int i = 0;
-            while ( i < max_cage && !found) {
-              if (is_ada_cage[i]) {  
+            while (i < maxCage && !found) {
+              if (isAdaCage[i]) {  
                 int j = 0;
-                while (j < cage_list[i].GetCageSize() && !found) {
-                  if (cage_list[i].GetAreaElmt(j).GetX() == dest.GetX() &&
-                      cage_list[i].GetAreaElmt(j).GetY() == dest.GetY()) {
+                while (j < cageList[i].getCageSize() && !found) {
+                  if (cageList[i].getAreaElmt(j).getX() == dest.getX() 
+                      && cageList[i].getAreaElmt(j).getY() == dest.getY()) {
                     found = true;
-                  }
-                  else {
+                  } else {
                     j++;
                   }
                 }
               }
-              if (!found)
-              i++;
+              if (!found) {
+                i++;
+              }
             }
             //Ada cage, data ada animal apa saja 
             if (found) {
-                //Telusuri animal
-                for (int j = 0; j < cage_list[i].NumberOfAnimal(); j++) {
-                  String animalspeci = cage_list[i].GetAnimal(j).GetSpeciesName();
-                  //cari apakah spesies animal sudah ada di list
-                  int k = 0;
-                  boolean exist = false;
-                  while (k < near_animal && !exist) {
-                    if (nearby_animal[k].GetSpeciesName() == animalspeci) {
-                      exist = true;
-                    }
-                    k++;
-                  }  
-                  //Tambahkan animal jika belum ada
-                  if (!exist) {
-                    nearby_animal [near_animal] = cage_list[i].GetAnimal(j);
-                    near_animal++;
-                  }                
-                }
+              //Telusuri animal
+              for (int j = 0; j < cageList[i].numberOfAnimal(); j++) {
+                String animalspeci = cageList[i].getAnimal(j).getSpeciesName();
+                //cari apakah spesies animal sudah ada di list
+                int k = 0;
+                boolean exist = false;
+                while (k < nearAnimal && !exist) {
+                  if (nearbyAnimal[k].getSpeciesName() == animalspeci) {
+                    exist = true;
+                  }
+                  k++;
+                }  
+                //Tambahkan animal jika belum ada
+                if (!exist) {
+                  nearbyAnimal [nearAnimal] = cageList[i].getAnimal(j);
+                  nearAnimal++;
+                }                
+              }
             }
           }
         }
@@ -598,15 +539,14 @@ public class Driver {
           System.out.println("Pilihan aksi: ");
           System.out.println(n + ". Lanjut Tour");
           n++;
-          for (int i = 0; i < near_animal; i++) {
-            System.out.println(n + ". Interaksi dengan " + 
-            nearby_animal[i].GetSpeciesName());
+          for (int i = 0; i < nearAnimal; i++) {
+            System.out.println(n + ". Interaksi dengan " 
+                + nearbyAnimal[i].getSpeciesName());
             n++;
           }
-          for (int i =0; i<nearfac;i++)
-          {
-            System.out.println(n + ". Masuk ke " +
-            nearby_facility[i].GetFacHabType());
+          for (int i = 0; i < nearFac;i++) {
+            System.out.println(n + ". Masuk ke " 
+                + nearbyFacility[i].getFacHabType());
             n++;
           }
           System.out.println("Masukkan pilihan: ");
@@ -615,17 +555,16 @@ public class Driver {
             System.out.print("Pilihan salah. Ulangi: ");
             x = scanner.nextInt();
           }
-          if (x !=1 ) {  
-            if (x <= near_animal +1) {
-              System.out.print(nearby_animal[x-2].GetSpeciesName() + ": ");
-               nearby_animal[x-2].Interact();
+          if (x != 1) {  
+            if (x <= nearAnimal + 1) {
+              System.out.print(nearbyAnimal[x - 2].getSpeciesName() + ": ");
+              nearbyAnimal[x - 2].interact();
               System.out.println();
-               nearby_animal[x-2].Deskripsi();
+              nearbyAnimal[x - 2].deskripsi();
               System.out.println();
               System.out.println();
-            }
-            else {
-              nearby_facility[x-near_animal-2].Enter();
+            } else {
+              nearbyFacility[x - nearAnimal - 2].enter();
               System.out.println();
             }
           }
@@ -634,15 +573,16 @@ public class Driver {
     }
     System.out.println("\nTour selesai.");
   }
-  /** Mencetak seluruh hewan dalam map
+  /** Mencetak seluruh hewan dalam map.
    */
-  public void PrintAllAnimal(){
+
+  public void printAllAnimal() {
     int count = 0;
-    for (int i = 0; i < max_cage; i++) {
-      if (is_ada_cage[i]) {
-        for (int j = 0; j < cage_list[i].NumberOfAnimal(); j++) {
+    for (int i = 0; i < maxCage; i++) {
+      if (isAdaCage[i]) {
+        for (int j = 0; j < cageList[i].numberOfAnimal(); j++) {
           count++;
-          System.out.println(count + "." + cage_list[i].GetAnimal(j).GetSpeciesName());
+          System.out.println(count + "." + cageList[i].getAnimal(j).getSpeciesName());
         }
       }
     }
