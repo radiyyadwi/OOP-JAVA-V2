@@ -1,125 +1,124 @@
+// file : mesinkar.java
 // Nama : M. Ferdi Ghozali
 // NIM : 13515014
+
 package virtualzoo.util.mesinkar;
-import java.util.*;
+
 import java.io.FileReader;
 import java.io.IOException;
-
-/* File: mesinkar.h */
-/* Definisi Mesin Karakter */
-/* State Mesin */
-// extern char CI;
-// extern char CC;
-// extern bool EOP;
-  // static ifstream pita;
-
-/** Class Mesinkar untuk membaca karakter
+/** Class Mesinkar untuk membaca karakter.
  * dari file eksternal
  * @author M.Ferdi Ghozali/13515014
  * @version 1.0, March 2017
  */
+
 public class Mesinkar {
-  private char CC;
-  private int CI = -1;
-  private boolean EOP;
-  private boolean d_next = false;
-  private char c_tamp;
-  private char Mark = '.';
-  public static FileReader input_stream = null;
-  /**Constructor
+  private char cc;
+  private int ci = -1;
+  private boolean eop;
+  private boolean isNext = false;
+  private char ccTamp;
+  private char mark = '.';
+  public static FileReader inputStream = null;
+  /**Constructor.
    * @see java.lang.reflect.Constructor
    */
-  public Mesinkar() {
-  }
-  /**Mendapatkan karakter CC
-   * 
-   * @return char CC
+
+  public Mesinkar() { }
+  /**Mendapatkan karakter cc.
+   * @return char cc
    */
-  public final char GetCC() {
-    return CC;
+
+  public final char getCc() {
+    return cc;
   }
-  /** Mendapatkan token
+  /** Mendapatkan token.
    * @return integer token
    */
-  public final int GetCI() {
-    return CI;
+
+  public final int getCi() {
+    return ci;
   }
-  /** Mengecek akhir file atau bukam
+  /** Mengecek akhir file atau bukam.
    * @return boolean true bila akhir file
    */
-  public final boolean GetEOF() {
-    return (EOP);
+
+  public final boolean getEof() {
+    return (eop);
   }
-  /** Mengecek akhir program atau bukam
+  /** Mengecek akhir program atau bukam.
    * @return boolean true bila akhir program
    */
-  public final boolean IsEOP() {
-    EOP = (CC == Mark);
-    return (EOP);
+
+  public final boolean isEop() {
+    eop = (cc == mark);
+    return (eop);
   }
   /** Mesin siap dioperasikan. Pita disiapkan untuk dibaca.
-    */
-  public final void START() {
+   */
+
+  public final void start() {
     try {
-      input_stream = new FileReader("VirtualZoo.txt");
+      inputStream = new FileReader("VirtualZoo.txt");
+    } catch (IOException error) {
+      System.out.println("salahnih");
     } 
-    catch(IOException error) {
-    } 
-    
-    ADV();
+    adv();
   }
-
-
   /** Pita dimajukan satu karakter. 
    */
-  public final void ADV()  {
-    ReadChar();
-    while ((CC == ' ' || CC == 13 || CC == 10 )&& !GetEOF()) {
-      ReadChar();
+
+  public final void adv() {
+    readChar();
+    while ((cc == ' ' || cc == 13 || cc == 10) && !getEof()) {
+      readChar();
     }
   }
-  /** Membaca karakter
+  /** Membaca karakter.
    */
-  private final void ReadChar() {
-        int temp = 0;
-    if (IsEOP()) {
-        try {
-          input_stream.close();
-        } 
-        catch(IOException error) {
-        } 
+
+  private final void readChar() {
+    int temp = 0;
+    if (isEop()) {
+      try {
+        inputStream.close();
+      } catch (IOException error) {
+        System.out.println("Tour akan dimulai. tekan enter untuk melanjutkan");
+      } 
     } else {
-      if (!d_next) {
+      if (!isNext) {
         try {
-          temp = input_stream.read();
+          temp = inputStream.read();
+        } catch (IOException error) {
+          System.out.println("Tour akan dimulai. tekan enter untuk melanjutkan");
         } 
-        catch(IOException error) {
-        } 
-        CC = (char) temp;
+        cc = (char) temp;
       } else {
-        CC = c_tamp;
-        d_next = false;
+        cc = ccTamp;
+        isNext = false;
       }
-      if (CC == Mark) {
-        EOP = true;
+      if (cc == mark) {
+        eop = true;
       }
-      if (CC == '1' || CC == '2' || CC == '3' || CC == '4' || CC == '5' || CC == '6' || CC == '7' || CC == '8' || CC == '9' || CC == '0') {
-          CI = 0;
-        while (CC == '1' || CC == '2' || CC == '3' || CC == '4' || CC == '5' || CC == '6' || CC == '7' || CC == '8' || CC == '9' || CC == '0') {
-          CI = CI * 10 + (CC - '0');
-          CC = '~';
-        try {
-          temp = input_stream.read(); 
-        } 
-        catch(IOException error) {
-        }           
-        CC = (char) temp;
+      if (cc == '1' || cc == '2' || cc == '3' || cc == '4' || cc == '5' || cc == '6' || cc == '7' 
+          || cc == '8' || cc == '9' || cc == '0') {
+        ci = 0;
+        while (cc == '1' || cc == '2' || cc == '3' || cc == '4' || cc == '5' || cc == '6' 
+            || cc == '7' || cc == '8' || cc == '9' || cc == '0') {
+          ci = ci * 10 + (cc - '0');
+          cc = '~';
+          try {
+            temp = inputStream.read(); 
+          } catch (IOException error) {
+            System.out.println("Tour akan dimulai. tekan enter untuk melanjutkan");
+          }           
+          cc = (char) temp;
         }
-        c_tamp = CC;
-        CC = '~';
-        d_next = true;
+        ccTamp = cc;
+        cc = '~';
+        isNext = true;
       } else {
-        CI = -1;
+        ci = -1;
       }
     }
   }
