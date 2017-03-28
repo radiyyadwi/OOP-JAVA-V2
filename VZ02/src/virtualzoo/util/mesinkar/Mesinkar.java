@@ -13,6 +13,11 @@ import java.io.IOException;
 // extern bool EOP;
   // static ifstream pita;
 
+/** Class Mesinkar untuk membaca karakter
+ * dari file eksternal
+ * @author M.Ferdi Ghozali/13515014
+ * @version 1.0, March 2017
+ */
 public class Mesinkar {
   private char CC;
   private int CI = -1;
@@ -21,27 +26,39 @@ public class Mesinkar {
   private char c_tamp;
   private char Mark = '.';
   public static FileReader input_stream = null;
+  /**Constructor
+   * @see java.lang.reflect.Constructor
+   */
   public Mesinkar() {
   }
+  /**Mendapatkan karakter CC
+   * 
+   * @return char CC
+   */
   public final char GetCC() {
     return CC;
   }
+  /** Mendapatkan token
+   * @return integer token
+   */
   public final int GetCI() {
     return CI;
   }
+  /** Mengecek akhir file atau bukam
+   * @return boolean true bila akhir file
+   */
   public final boolean GetEOF() {
     return (EOP);
   }
+  /** Mengecek akhir program atau bukam
+   * @return boolean true bila akhir program
+   */
   public final boolean IsEOP() {
     EOP = (CC == Mark);
     return (EOP);
   }
-  /* Mesin siap dioperasikan. Pita disiapkan untuk dibaca.
-  Karakter pertama yang ada pada pita posisinya adalah pada jendela.
-  I.S. : sembarang
-  F.S. : CToken adalah karakter pertama pada pita
-        Jika CToken != MARK maka EOP akan padam (false)
-        Jika CToken = MARK maka EOP akan menyala (true) */
+  /** Mesin siap dioperasikan. Pita disiapkan untuk dibaca.
+    */
   public final void START() {
     try {
       input_stream = new FileReader("VirtualZoo.txt");
@@ -53,18 +70,16 @@ public class Mesinkar {
   }
 
 
-  /* Pita dimajukan satu karakter. 
-    I.S. : Karakter pada jendela = CToken, CToken != MARK
-    F.S. : CToken adalah karakter berikutnya dari CToken yang lama, 
-          CToken mungkin = MARK
-          Jika  CToken = MARK maka EOP akan menyala (true) */
+  /** Pita dimajukan satu karakter. 
+   */
   public final void ADV()  {
     ReadChar();
     while ((CC == ' ' || CC == 13 || CC == 10 )&& !GetEOF()) {
       ReadChar();
     }
   }
-
+  /** Membaca karakter
+   */
   private final void ReadChar() {
         int temp = 0;
     if (IsEOP()) {
