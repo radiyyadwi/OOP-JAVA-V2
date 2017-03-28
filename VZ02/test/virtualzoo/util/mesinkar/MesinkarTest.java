@@ -45,7 +45,7 @@ public class MesinkarTest {
         System.out.print("GetCC");
         Mesinkar instance = new Mesinkar();
         char expResult = 0;
-        char result = instance.GetCC();
+        char result = instance.getCc();
         assertEquals(expResult, result);
         System.out.println(" berhasil");
     }
@@ -58,7 +58,7 @@ public class MesinkarTest {
         System.out.print("GetCI");
         Mesinkar instance = new Mesinkar();
         int expResult = -1;
-        int result = instance.GetCI();
+        int result = instance.getCi();
         assertEquals(expResult, result);
         System.out.println(" berhasil");
     }
@@ -71,7 +71,7 @@ public class MesinkarTest {
         System.out.print("GetEOF");
         Mesinkar instance = new Mesinkar();
         boolean expResult = false;
-        boolean result = instance.GetEOF();
+        boolean result = instance.getEof();
         assertEquals(expResult, result);
         System.out.println(" berhasil");
     }
@@ -84,7 +84,7 @@ public class MesinkarTest {
         System.out.print("IsEOP");
         Mesinkar instance = new Mesinkar();
         boolean expResult = false;
-        boolean result = instance.IsEOP();
+        boolean result = instance.isEop();
         assertEquals(expResult, result);
         System.out.println(" berhasil");
     }
@@ -96,7 +96,7 @@ public class MesinkarTest {
     public void testSTART() {
         System.out.print("START");
         Mesinkar instance = new Mesinkar();
-        instance.START();
+        instance.start();
         System.out.println(" berhasil");
     }
 

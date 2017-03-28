@@ -45,7 +45,7 @@ public class CellTest {
         System.out.print("SetCellType");
         String tipe = "";
         Cell instance = new Cell();
-        instance.SetCellType(tipe);
+        instance.setCellType(tipe);
         System.out.println(" berhasil");
     }
 
@@ -57,7 +57,7 @@ public class CellTest {
         System.out.print("GetCellType");
         Cell instance = new Cell();
         String expResult = "Facility";
-        String result = instance.GetCellType();
+        String result = instance.getCellType();
         assertEquals(expResult, result);
         System.out.println(" berhasil");
     }
@@ -70,7 +70,7 @@ public class CellTest {
         System.out.print("AddPilihan");
         String _pilihan = "";
         Cell instance = new Cell();
-        instance.AddPilihan(_pilihan);
+        instance.addPilihan(_pilihan);
         System.out.println(" berhasil");
     }
 
@@ -82,7 +82,7 @@ public class CellTest {
         System.out.print("GetFacHabType");
         Cell instance = new Cell();
         String expResult = "Road";
-        String result = instance.GetFacHabType();
+        String result = instance.getFacHabType();
         assertEquals(expResult, result);
         System.out.println(" berhasil");
     }
@@ -95,7 +95,7 @@ public class CellTest {
         System.out.print("Render");
         boolean oncage = false;
         Cell instance = new Cell();
-        instance.Render(oncage);
+        instance.render(oncage);
         System.out.println(" berhasil");
     }
 
@@ -106,7 +106,7 @@ public class CellTest {
     public void testRender_0args() {
         System.out.print("Render");
         Cell instance = new Cell();
-        instance.Render();
+        instance.render();
         System.out.println(" berhasil");
     }
 
@@ -127,7 +127,7 @@ public class CellTest {
         System.out.print("DelPilihan");
         String _pilihan = "";
         Cell instance = new Cell();
-        instance.DelPilihan(_pilihan);
+        instance.delPilihan(_pilihan);
         System.out.println(" berhasil");
     }
     

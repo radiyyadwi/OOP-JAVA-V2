@@ -45,7 +45,7 @@ public class PointTest {
         System.out.print("GetX");
         Point instance = new Point();
         int expResult = 0;
-        int result = instance.GetX();
+        int result = instance.getX();
         assertEquals(expResult, result);
         System.out.println(" berhasil");
     }
@@ -58,7 +58,7 @@ public class PointTest {
         System.out.print("GetY");
         Point instance = new Point();
         int expResult = 0;
-        int result = instance.GetY();
+        int result = instance.getY();
         assertEquals(expResult, result);
         System.out.println(" berhasil");
     }
@@ -71,7 +71,7 @@ public class PointTest {
         System.out.print("SetX");
         int x = 0;
         Point instance = new Point();
-        instance.SetX(x);
+        instance.setX(x);
         System.out.println(" berhasil");
     }
 
@@ -83,7 +83,7 @@ public class PointTest {
         System.out.print("SetY");
         int y = 0;
         Point instance = new Point();
-        instance.SetY(y);
+        instance.setY(y);
         System.out.println(" berhasil");
     }
     

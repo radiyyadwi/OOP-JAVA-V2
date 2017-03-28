@@ -44,7 +44,7 @@ public class ScreenCleanerTest {
     public void testClearScreen() {
         System.out.print("ClearScreen");
         ScreenCleaner instance = new ScreenCleaner();
-        instance.ClearScreen();
+        instance.clearScreen();
         System.out.println(" berhasil");
     }
     

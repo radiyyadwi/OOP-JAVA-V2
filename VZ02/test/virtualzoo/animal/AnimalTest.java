@@ -46,7 +46,7 @@ public class AnimalTest {
         System.out.print("SetPosition");
         Point P = new Point(1,1);
         Animal instance = new Animal('a');
-        instance.SetPosition(P);
+        instance.setPosition(P);
         System.out.println(" berhasil");
     }
 
@@ -58,7 +58,7 @@ public class AnimalTest {
         System.out.print("GetFoodType");
         Animal instance = new Animal('a');
         String expResult = "Omnivore";
-        String result = instance.GetFoodType();
+        String result = instance.getFoodType();
         assertEquals(expResult, result);
         System.out.println(" berhasil");
     }
@@ -71,7 +71,7 @@ public class AnimalTest {
         System.out.print("GetDeskripsi");
         Animal instance = new Animal('a');
         String expResult = "Aves merupakan kelas kelompok hewan vertebrata yang memiliki bulu dan sayap";
-        String result = instance.GetDeskripsi();
+        String result = instance.getDeskripsi();
         assertEquals(expResult, result);
         System.out.println(" berhasil");
     }
@@ -84,7 +84,7 @@ public class AnimalTest {
         System.out.print("GetClassName");
         Animal instance = new Animal('a');
         String expResult = "Aves";
-        String result = instance.GetClassName();
+        String result = instance.getClassName();
         assertEquals(expResult, result);
         System.out.println(" berhasil");
     }
@@ -97,9 +97,9 @@ public class AnimalTest {
         System.out.print("GetPosition");
         Animal instance = new Animal('a');
         Point expResult = new Point(-1,-1);
-        Point result = instance.GetPosition();
-        assertEquals(expResult.GetX(), result.GetX());
-        assertEquals(expResult.GetY(), result.GetY());
+        Point result = instance.getPosition();
+        assertEquals(expResult.getX(), result.getX());
+        assertEquals(expResult.getY(), result.getY());
 
         System.out.println(" berhasil");
     }
@@ -112,7 +112,7 @@ public class AnimalTest {
         System.out.print("GetSpeciesName");
         Animal instance = new Animal('a');
         String expResult = "Angsa";
-        String result = instance.GetSpeciesName();
+        String result = instance.getSpeciesName();
         assertEquals(expResult, result);
         System.out.println(" berhasil");
     }
@@ -125,7 +125,7 @@ public class AnimalTest {
         System.out.print("GetFoodNum");
         Animal instance = new Animal('a');
         double expResult = 1.275;
-        double result = instance.GetFoodNum();
+        double result = instance.getFoodNum();
         assertEquals(expResult, result, 0.0);
         System.out.println(" berhasil");
     }
@@ -139,7 +139,7 @@ public class AnimalTest {
         String animal = "";
         Animal instance = new Animal('a');
         boolean expResult = false;
-        boolean result = instance.IsEnemy(animal);
+        boolean result = instance.isEnemy(animal);
         assertEquals(expResult, result);
         System.out.println(" berhasil");
     }
@@ -152,7 +152,7 @@ public class AnimalTest {
         System.out.print("IsTamed");
         Animal instance = new Animal('a');
         boolean expResult = true;
-        boolean result = instance.IsTamed();
+        boolean result = instance.isTamed();
         assertEquals(expResult, result);
         System.out.println(" berhasil");
     }
@@ -164,7 +164,7 @@ public class AnimalTest {
     public void testInteract() {
         System.out.print("Interact");
         Animal instance = new Animal('a');
-        instance.Interact();
+        instance.interact();
         System.out.println(" berhasil");
     }
 
@@ -175,7 +175,7 @@ public class AnimalTest {
     public void testDeskripsi() {
         System.out.print("Deskripsi");
         Animal instance = new Animal('a');
-        instance.Deskripsi();
+        instance.deskripsi();
         System.out.println(" berhasil");
     }
 
@@ -187,7 +187,7 @@ public class AnimalTest {
         System.out.print("AddAnimalType");
         String type = "";
         Animal instance = new Animal('a');
-        instance.AddAnimalType(type);
+        instance.addAnimalType(type);
         System.out.println(" berhasil");
     }
 
@@ -199,7 +199,7 @@ public class AnimalTest {
         System.out.print("AddEnemy");
         String animalname = "";
         Animal instance = new Animal('a');
-        instance.AddEnemy(animalname);
+        instance.addEnemy(animalname);
         System.out.println(" berhasil");
     }
 
@@ -212,7 +212,7 @@ public class AnimalTest {
         String S = "";
         Animal instance = new Animal('a');
         boolean expResult = false;
-        boolean result = instance.IsTypeThere(S);
+        boolean result = instance.isTypeThere(S);
         assertEquals(expResult, result);
         System.out.println(" berhasil");
     }
@@ -224,7 +224,7 @@ public class AnimalTest {
     public void testRender() {
         System.out.print("Render");
         Animal instance = new Animal('a');
-        instance.Render();
+        instance.render();
         System.out.println(" berhasil");
     }
     

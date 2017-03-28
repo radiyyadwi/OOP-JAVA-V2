@@ -48,7 +48,7 @@ public class ZooTest {
         int j = 0;
         Zoo instance = new Zoo();
         Cell expResult = null;
-        Cell result = instance.GetZooElmt(i, j);
+        Cell result = instance.getZooElmt(i, j);
         assertEquals(expResult, result);
         System.out.println(" berhasil");
     }
@@ -63,7 +63,7 @@ public class ZooTest {
         int j = 0;
         Cell elmt = null;
         Zoo instance = new Zoo();
-        instance.SetZooElmt(i, j, elmt);
+        instance.setZooElmt(i, j, elmt);
         System.out.println(" berhasil");
     }
     
