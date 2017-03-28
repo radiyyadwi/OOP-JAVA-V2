@@ -1,6 +1,6 @@
 // File : Cell.java
 // Author : Prama Legawa Halqavi (13515132)
-
+package virtualzoo.cell;
 import java.util.Scanner;
 
 public class Cell {

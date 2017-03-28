@@ -1,0 +1,19 @@
+13|18
+W1- W1r W1- X  A12j  A12- L13- L13- L13t L13- E L14- L14-
+W1- W1g W1- _  A12-  A12- L13- L13w L13- L13u _ L14k L14-
+W1- W1- W1- _  A12-  A12- L13- L13- L13- L13- _ L14- L14-
+P   P   P   _  A12c   _   W11- W11p W11- W11- _ L14- L14-    
+P   P   P   _   _     _   W11- W11- W11- W11- _ L14- L14- 
+R   R   R   _  L10-  L10- W11- W11- P    P    _ P    P
+R   R   R   _  L10-  L10k P    P    P    P    _ P    P
+R   R   R   _  W7-   W7-  P    P    P    P    _ P    P
+L2- L2a L2- _  L6-   W7s  L8-  L8-  L8-  L8-  _ R    P
+L2- L2- L2- _  L6-   W7-  L8k  _    _     _   _ R    R
+L2o L2- L2- _  L6-   W7-  L8-  W5-  W5-  W5-  _ R    R
+W3l W3- W3- _  L6-   L6y  W5n  W5j  W5-  W5-  _ R    R  
+W3- W3- W3- _   _    _    _    _    _    _    _ R    R
+W3- W3- W3i W3- W3-  P    P    P    P    P    _ R    R
+W3b W3- P   P   P    P    P    P    W4h  W4-  _ A15- R
+W3- W3- P   P   P    P    P    P    W4-  W4-  _ A15e A15-
+W3- P   P   P   P    P    P    P    W4-  W4-  _ A15- A15u
+ P  P   P   P   P    P    P    P    W4-  W4-  E A15- A15-

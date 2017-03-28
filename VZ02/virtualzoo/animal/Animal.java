@@ -1,6 +1,6 @@
-//Nama : Radiyya Dwisaputra
-//NIM : 13515023
-import java.util.concurrent.TimeUnit;
+package virtualzoo.animal;
+import virtualzoo.util.point.Point;
+
 public class Animal{
   private char symbol;
   private boolean tamed;
@@ -33,8 +33,7 @@ public class Animal{
   public Animal(char animalcode) {
     enemy_list = new String[20];
     symbol = animalcode;
-    position.SetX(-1);
-    position.SetY(-1);
+    position = new Point(-1,-1);
     tamed = true;
     switch(animalcode)
     {
