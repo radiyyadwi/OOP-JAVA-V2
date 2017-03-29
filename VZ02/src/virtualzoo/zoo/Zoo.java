@@ -57,4 +57,4 @@ public class Zoo {
   public void setZooElmt(int i, int j, Cell elmt) {
     zooMap[i][j] = elmt;
   }
-};
+}
